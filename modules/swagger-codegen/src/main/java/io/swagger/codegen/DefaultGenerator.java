@@ -289,7 +289,7 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
 
             config.processSwagger(swagger);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return files;
     }
