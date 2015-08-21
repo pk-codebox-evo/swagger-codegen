@@ -14,7 +14,7 @@
 {{#operations}}
   {{#operationsByPath}}
   "{{{path}}}": {
-  	{{#operation}}
+    {{#operation}}
     "{{httpMethod}}": {
       "x-swagger-router-controller": "{{classname}}",
       "tags": ["{{baseName}}"],
@@ -34,7 +34,6 @@
     {{/operation}}
   } {{#hasMore}},{{/hasMore}}
   {{/operationsByPath}}
-   {{#hasMore}},{{/hasMore}}
 {{/operations}}
 {{/apis}}
 {{/apiInfo}}
