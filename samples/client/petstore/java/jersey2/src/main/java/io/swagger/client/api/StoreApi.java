@@ -6,18 +6,12 @@ import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
 
-import io.swagger.client.model.*;
-
-import java.util.*;
-
 import java.util.Map;
 import io.swagger.client.model.Order;
 
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-08-22T21:47:05.989+08:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-10-21T11:55:20.020+08:00")
 public class StoreApi {
   private ApiClient apiClient;
 
@@ -46,7 +40,6 @@ public class StoreApi {
   public Map<String, Integer> getInventory () throws ApiException {
     Object postBody = null;
     
-
     // create path and map variables
     String path = "/store/inventory".replaceAll("\\{format\\}","json");
 
@@ -72,6 +65,7 @@ public class StoreApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "api_key" };
+
     
     TypeRef returnType = new TypeRef<Map<String, Integer>>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
@@ -87,7 +81,6 @@ public class StoreApi {
   public Order placeOrder (Order body) throws ApiException {
     Object postBody = body;
     
-
     // create path and map variables
     String path = "/store/order".replaceAll("\\{format\\}","json");
 
@@ -113,6 +106,7 @@ public class StoreApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] {  };
+
     
     TypeRef returnType = new TypeRef<Order>() {};
     return apiClient.invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
@@ -130,10 +124,9 @@ public class StoreApi {
     
     // verify the required parameter 'orderId' is set
     if (orderId == null) {
-       throw new ApiException(400, "Missing the required parameter 'orderId' when calling getOrderById");
+      throw new ApiException(400, "Missing the required parameter 'orderId' when calling getOrderById");
     }
     
-
     // create path and map variables
     String path = "/store/order/{orderId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
@@ -160,6 +153,7 @@ public class StoreApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] {  };
+
     
     TypeRef returnType = new TypeRef<Order>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
@@ -177,10 +171,9 @@ public class StoreApi {
     
     // verify the required parameter 'orderId' is set
     if (orderId == null) {
-       throw new ApiException(400, "Missing the required parameter 'orderId' when calling deleteOrder");
+      throw new ApiException(400, "Missing the required parameter 'orderId' when calling deleteOrder");
     }
     
-
     // create path and map variables
     String path = "/store/order/{orderId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
@@ -207,6 +200,7 @@ public class StoreApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] {  };
+
     
     apiClient.invokeAPI(path, "DELETE", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, null);
     

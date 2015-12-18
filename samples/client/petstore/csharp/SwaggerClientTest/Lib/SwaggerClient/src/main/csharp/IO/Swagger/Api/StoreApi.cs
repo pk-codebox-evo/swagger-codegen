@@ -8,59 +8,86 @@ using IO.Swagger.Model;
 namespace IO.Swagger.Api
 {
     
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
     public interface IStoreApi
     {
         
         /// <summary>
-        /// Returns pet inventories by status Returns a map of status codes to quantities
+        /// Returns pet inventories by status
         /// </summary>
-        /// <returns>Dictionary<String, int?></returns>
-        Dictionary<String, int?> GetInventory ();
+        /// <remarks>
+        /// Returns a map of status codes to quantities
+        /// </remarks>
+        /// <returns></returns>
+        Dictionary<string, int?> GetInventory ();
   
         /// <summary>
-        /// Returns pet inventories by status Returns a map of status codes to quantities
+        /// Returns pet inventories by status
         /// </summary>
-        /// <returns>Dictionary<String, int?></returns>
-        System.Threading.Tasks.Task<Dictionary<String, int?>> GetInventoryAsync ();
+        /// <remarks>
+        /// Returns a map of status codes to quantities
+        /// </remarks>
+        /// <returns></returns>
+        System.Threading.Tasks.Task<Dictionary<string, int?>> GetInventoryAsync ();
         
         /// <summary>
-        /// Place an order for a pet 
+        /// Place an order for a pet
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="body">order placed for purchasing the pet</param>
         /// <returns>Order</returns>
         Order PlaceOrder (Order body);
   
         /// <summary>
-        /// Place an order for a pet 
+        /// Place an order for a pet
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="body">order placed for purchasing the pet</param>
         /// <returns>Order</returns>
         System.Threading.Tasks.Task<Order> PlaceOrderAsync (Order body);
         
         /// <summary>
-        /// Find purchase order by ID For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
+        /// Find purchase order by ID
         /// </summary>
+        /// <remarks>
+        /// For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
+        /// </remarks>
         /// <param name="orderId">ID of pet that needs to be fetched</param>
         /// <returns>Order</returns>
         Order GetOrderById (string orderId);
   
         /// <summary>
-        /// Find purchase order by ID For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
+        /// Find purchase order by ID
         /// </summary>
+        /// <remarks>
+        /// For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
+        /// </remarks>
         /// <param name="orderId">ID of pet that needs to be fetched</param>
         /// <returns>Order</returns>
         System.Threading.Tasks.Task<Order> GetOrderByIdAsync (string orderId);
         
         /// <summary>
-        /// Delete purchase order by ID For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+        /// Delete purchase order by ID
         /// </summary>
+        /// <remarks>
+        /// For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+        /// </remarks>
         /// <param name="orderId">ID of the order that needs to be deleted</param>
         /// <returns></returns>
         void DeleteOrder (string orderId);
   
         /// <summary>
-        /// Delete purchase order by ID For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+        /// Delete purchase order by ID
         /// </summary>
+        /// <remarks>
+        /// For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+        /// </remarks>
         /// <param name="orderId">ID of the order that needs to be deleted</param>
         /// <returns></returns>
         System.Threading.Tasks.Task DeleteOrderAsync (string orderId);
@@ -107,9 +134,8 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Gets the base path of the API client.
         /// </summary>
-        /// <param name="basePath">The base path</param>
         /// <value>The base path</value>
-        public String GetBasePath(String basePath)
+        public String GetBasePath()
         {
             return this.ApiClient.BasePath;
         }
@@ -117,15 +143,15 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Gets or sets the API client.
         /// </summary>
-        /// <value>An instance of the ApiClient</param>
+        /// <value>An instance of the ApiClient</value>
         public ApiClient ApiClient {get; set;}
     
         
         /// <summary>
         /// Returns pet inventories by status Returns a map of status codes to quantities
         /// </summary>
-        /// <returns>Dictionary<String, int?></returns>            
-        public Dictionary<String, int?> GetInventory ()
+        /// <returns></returns>            
+        public Dictionary<string, int?> GetInventory ()
         {
             
     
@@ -138,6 +164,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -156,14 +192,14 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetInventory: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (Dictionary<String, int?>) ApiClient.Deserialize(response.Content, typeof(Dictionary<String, int?>), response.Headers);
+            return (Dictionary<string, int?>) ApiClient.Deserialize(response.Content, typeof(Dictionary<string, int?>), response.Headers);
         }
     
         /// <summary>
         /// Returns pet inventories by status Returns a map of status codes to quantities
         /// </summary>
-        /// <returns>Dictionary<String, int?></returns>
-        public async System.Threading.Tasks.Task<Dictionary<String, int?>> GetInventoryAsync ()
+        /// <returns></returns>
+        public async System.Threading.Tasks.Task<Dictionary<string, int?>> GetInventoryAsync ()
         {
             
     
@@ -175,7 +211,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -191,7 +237,7 @@ namespace IO.Swagger.Api
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetInventory: " + response.Content, response.Content);
 
-            return (Dictionary<String, int?>) ApiClient.Deserialize(response.Content, typeof(Dictionary<String, int?>), response.Headers);
+            return (Dictionary<string, int?>) ApiClient.Deserialize(response.Content, typeof(Dictionary<string, int?>), response.Headers);
         }
         
         /// <summary>
@@ -212,6 +258,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -251,7 +307,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -292,6 +358,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (orderId != null) pathParams.Add("orderId", ApiClient.ParameterToString(orderId)); // path parameter
             
@@ -333,7 +409,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (orderId != null) pathParams.Add("orderId", ApiClient.ParameterToString(orderId)); // path parameter
             
@@ -374,6 +460,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (orderId != null) pathParams.Add("orderId", ApiClient.ParameterToString(orderId)); // path parameter
             
@@ -415,7 +511,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (orderId != null) pathParams.Add("orderId", ApiClient.ParameterToString(orderId)); // path parameter
             

@@ -24,7 +24,7 @@ exports.placeOrder = function(body) {
   "complete" : true,
   "status" : "aeiou",
   "quantity" : 123,
-  "shipDate" : "2015-07-09T06:03:19.571+0000"
+  "shipDate" : "2015-10-20T06:12:23.907+0000"
 };
   
 
@@ -43,7 +43,7 @@ exports.getOrderById = function(orderId) {
   "complete" : true,
   "status" : "aeiou",
   "quantity" : 123,
-  "shipDate" : "2015-07-09T06:03:19.576+0000"
+  "shipDate" : "2015-10-20T06:12:23.911+0000"
 };
   
 

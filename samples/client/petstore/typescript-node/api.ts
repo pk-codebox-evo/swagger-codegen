@@ -118,7 +118,7 @@ class VoidAuth implements Authentication {
 }
 
 export class UserApi {
-    private basePath = '/v2';
+    private basePath = 'http://petstore.swagger.io/v2';
     public authentications = {
         'default': <Authentication>new VoidAuth(),
         'api_key': new ApiKeyAuth('header', 'api_key'),
@@ -148,6 +148,7 @@ export class UserApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         var useFormData = false;
 
@@ -194,6 +195,7 @@ export class UserApi {
         var headerParams: any = {};
         var formParams: any = {};
 
+
         var useFormData = false;
 
         var deferred = promise.defer<{ response: http.ClientResponse;  }>();
@@ -239,6 +241,7 @@ export class UserApi {
         var headerParams: any = {};
         var formParams: any = {};
 
+
         var useFormData = false;
 
         var deferred = promise.defer<{ response: http.ClientResponse;  }>();
@@ -283,6 +286,7 @@ export class UserApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         if (username !== undefined) {
             queryParameters['username'] = username;
@@ -336,6 +340,7 @@ export class UserApi {
         var headerParams: any = {};
         var formParams: any = {};
 
+
         var useFormData = false;
 
         var deferred = promise.defer<{ response: http.ClientResponse;  }>();
@@ -381,6 +386,7 @@ export class UserApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         // verify required parameter 'username' is set
         if (!username) {
@@ -432,6 +438,7 @@ export class UserApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         // verify required parameter 'username' is set
         if (!username) {
@@ -485,6 +492,7 @@ export class UserApi {
         var headerParams: any = {};
         var formParams: any = {};
 
+
         // verify required parameter 'username' is set
         if (!username) {
             throw new Error('Missing required parameter username when calling deleteUser');
@@ -528,7 +536,7 @@ export class UserApi {
     }
 }
 export class PetApi {
-    private basePath = '/v2';
+    private basePath = 'http://petstore.swagger.io/v2';
     public authentications = {
         'default': <Authentication>new VoidAuth(),
         'api_key': new ApiKeyAuth('header', 'api_key'),
@@ -558,6 +566,7 @@ export class PetApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         var useFormData = false;
 
@@ -606,6 +615,7 @@ export class PetApi {
         var headerParams: any = {};
         var formParams: any = {};
 
+
         var useFormData = false;
 
         var deferred = promise.defer<{ response: http.ClientResponse;  }>();
@@ -652,6 +662,7 @@ export class PetApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         if (status !== undefined) {
             queryParameters['status'] = status;
@@ -702,6 +713,7 @@ export class PetApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         if (tags !== undefined) {
             queryParameters['tags'] = tags;
@@ -754,6 +766,7 @@ export class PetApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         // verify required parameter 'petId' is set
         if (!petId) {
@@ -809,6 +822,7 @@ export class PetApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         // verify required parameter 'petId' is set
         if (!petId) {
@@ -871,12 +885,13 @@ export class PetApi {
         var headerParams: any = {};
         var formParams: any = {};
 
+
         // verify required parameter 'petId' is set
         if (!petId) {
             throw new Error('Missing required parameter petId when calling deletePet');
         }
 
-        headerParams['apiKey'] = apiKey;
+        headerParams['api_key'] = apiKey;
 
         var useFormData = false;
 
@@ -925,6 +940,7 @@ export class PetApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         // verify required parameter 'petId' is set
         if (!petId) {
@@ -980,7 +996,7 @@ export class PetApi {
     }
 }
 export class StoreApi {
-    private basePath = '/v2';
+    private basePath = 'http://petstore.swagger.io/v2';
     public authentications = {
         'default': <Authentication>new VoidAuth(),
         'api_key': new ApiKeyAuth('header', 'api_key'),
@@ -1010,6 +1026,7 @@ export class StoreApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         var useFormData = false;
 
@@ -1057,6 +1074,7 @@ export class StoreApi {
         var headerParams: any = {};
         var formParams: any = {};
 
+
         var useFormData = false;
 
         var deferred = promise.defer<{ response: http.ClientResponse; body: Order;  }>();
@@ -1103,6 +1121,7 @@ export class StoreApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         // verify required parameter 'orderId' is set
         if (!orderId) {
@@ -1154,6 +1173,7 @@ export class StoreApi {
         var queryParameters: any = {};
         var headerParams: any = {};
         var formParams: any = {};
+
 
         // verify required parameter 'orderId' is set
         if (!orderId) {

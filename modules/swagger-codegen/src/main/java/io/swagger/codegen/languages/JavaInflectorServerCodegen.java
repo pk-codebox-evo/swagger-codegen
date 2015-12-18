@@ -1,6 +1,7 @@
 package io.swagger.codegen.languages;
 
 import io.swagger.codegen.CodegenConfig;
+import io.swagger.codegen.CodegenConstants;
 import io.swagger.codegen.CodegenOperation;
 import io.swagger.codegen.CodegenType;
 import io.swagger.codegen.SupportingFile;
@@ -21,10 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 public class JavaInflectorServerCodegen extends JavaClientCodegen implements CodegenConfig {
-    protected String invokerPackage = "io.swagger.handler";
-    protected String groupId = "io.swagger";
-    protected String artifactId = "swagger-inflector-server";
-    protected String artifactVersion = "1.0.0";
     protected String title = "Swagger Inflector";
 
     public JavaInflectorServerCodegen() {
@@ -34,14 +31,16 @@ public class JavaInflectorServerCodegen extends JavaClientCodegen implements Cod
         modelTemplateFiles.put("model.mustache", ".java");
         apiTemplateFiles.put("api.mustache", ".java");
         templateDir = "JavaInflector";
+        invokerPackage = "io.swagger.handler";
+        artifactId = "swagger-inflector-server";
 
         apiPackage = System.getProperty("swagger.codegen.inflector.apipackage", "io.swagger.handler");
         modelPackage = System.getProperty("swagger.codegen.inflector.modelpackage", "io.swagger.model");
 
-        additionalProperties.put("invokerPackage", invokerPackage);
-        additionalProperties.put("groupId", groupId);
-        additionalProperties.put("artifactId", artifactId);
-        additionalProperties.put("artifactVersion", artifactVersion);
+        additionalProperties.put(CodegenConstants.INVOKER_PACKAGE, invokerPackage);
+        additionalProperties.put(CodegenConstants.GROUP_ID, groupId);
+        additionalProperties.put(CodegenConstants.ARTIFACT_ID, artifactId);
+        additionalProperties.put(CodegenConstants.ARTIFACT_VERSION, artifactVersion);
         additionalProperties.put("title", title);
 
         languageSpecificPrimitives = new HashSet<String>(

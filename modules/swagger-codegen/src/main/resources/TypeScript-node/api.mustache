@@ -27,7 +27,7 @@ export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
 }
 
 {{#hasEnums}}
-export module {{classname}} {
+export namespace {{classname}} {
 {{#vars}}
 {{#isEnum}}
     export enum {{datatypeWithEnum}} { {{#allowableValues}}{{#values}}
@@ -95,7 +95,7 @@ class VoidAuth implements Authentication {
 */
 {{/description}}
 export class {{classname}} {
-    private basePath = '{{contextPath}}';
+    private basePath = '{{basePath}}';
     public authentications = {
         'default': <Authentication>new VoidAuth(),
 {{#authMethods}}
@@ -157,49 +157,46 @@ export class {{classname}} {
 {{#operation}}
 
     public {{nickname}} ({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) : Promise<{ response: http.ClientResponse; {{#returnType}}body: {{{returnType}}}; {{/returnType}} }> {
-        var path = this.url + this.basePath + '{{path}}';
+        let path = this.url + this.basePath + '{{path}}';
 
 {{#pathParams}}
-        path = path.replace('{' + '{{paramName}}' + '}', String({{paramName}}));
+        path = path.replace('{' + '{{baseName}}' + '}', String({{paramName}}));
 
 {{/pathParams}}
-        var queryParameters: any = {};
-        var headerParams: any = {};
-        var formParams: any = {};
+        let queryParameters: any = {};
+        let headerParams: any = {};
+        let formParams: any = {};
 
-{{#allParams}}
-{{#required}}
+{{#allParams}}{{#required}}
         // verify required parameter '{{paramName}}' is set
         if (!{{paramName}}) {
             throw new Error('Missing required parameter {{paramName}} when calling {{nickname}}');
         }
-
-{{/required}}
-{{/allParams}}
+{{/required}}{{/allParams}}
 {{#queryParams}}
         if ({{paramName}} !== undefined) {
-            queryParameters['{{paramName}}'] = {{paramName}};
+            queryParameters['{{baseName}}'] = {{paramName}};
         }
 
 {{/queryParams}}
 {{#headerParams}}
-        headerParams['{{paramName}}'] = {{paramName}};
+        headerParams['{{baseName}}'] = {{paramName}};
 
 {{/headerParams}}
-        var useFormData = false;
+        let useFormData = false;
 
 {{#formParams}}
         if ({{paramName}} !== undefined) {
-            formParams['{{paramName}}'] = {{paramName}};
+            formParams['{{baseName}}'] = {{paramName}};
         }
 {{#isFile}}
         useFormData = true;
 {{/isFile}}
 
 {{/formParams}}
-        var deferred = promise.defer<{ response: http.ClientResponse; {{#returnType}}body: {{{returnType}}}; {{/returnType}} }>();
+        let deferred = promise.defer<{ response: http.ClientResponse; {{#returnType}}body: {{{returnType}}}; {{/returnType}} }>();
 
-        var requestOptions: request.Options = {
+        let requestOptions: request.Options = {
             method: '{{httpMethod}}',
             qs: queryParameters,
             headers: headerParams,

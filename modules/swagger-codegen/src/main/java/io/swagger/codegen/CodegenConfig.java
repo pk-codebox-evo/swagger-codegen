@@ -67,6 +67,8 @@ public interface CodegenConfig {
 
     CodegenModel fromModel(String name, Model model, Map<String, Model> allDefinitions);
 
+    CodegenOperation fromOperation(String resourcePath, String httpMethod, Operation operation, Map<String, Model> definitions, Swagger swagger);
+    
     CodegenOperation fromOperation(String resourcePath, String httpMethod, Operation operation, Map<String, Model> definitions);
 
     List<CodegenSecurity> fromSecurity(Map<String, SecuritySchemeDefinition> schemes);
@@ -82,6 +84,10 @@ public interface CodegenConfig {
     Map<String, String> apiTemplateFiles();
 
     Map<String, String> modelTemplateFiles();
+
+    Set<String> languageSpecificPrimitives();
+
+    void preprocessSwagger(Swagger swagger);
 
     void processSwagger(Swagger swagger);
 

@@ -3,7 +3,7 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 {{#operations}}
-module {{package}} {
+namespace {{package}} {
     'use strict';
 
 {{#description}}
@@ -12,11 +12,11 @@ module {{package}} {
     */
 {{/description}}
     export class {{classname}} {
-        private basePath = '{{contextPath}}';
+        private basePath = '{{basePath}}';
 
-        static $inject: string[] = ['$http'];
+        static $inject: string[] = ['$http', '$httpParamSerializer'];
 
-        constructor(private $http: ng.IHttpService, basePath?: string) {
+        constructor(private $http: ng.IHttpService, basePath?: string, private $httpParamSerializer?: (d: any) => any) {
             if (basePath) {
                 this.basePath = basePath;
             }
@@ -24,15 +24,18 @@ module {{package}} {
 {{#operation}}
 
         public {{nickname}} ({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}extraHttpRequestParams?: any ) : ng.IHttpPromise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{}{{/returnType}}> {
-            var path = this.basePath + '{{path}}';
+            let path = this.basePath + '{{path}}';
 
 {{#pathParams}}
-            path = path.replace('{' + '{{paramName}}' + '}', String({{paramName}}));
+            path = path.replace('{' + '{{baseName}}' + '}', String({{paramName}}));
 
 {{/pathParams}}
-            var queryParameters: any = {};
-            var headerParams: any = {};
+            let queryParameters: any = {};
+            let headerParams: any = {};
+{{#hasFormParams}}
+            let formParams: any = {};
 
+{{/hasFormParams}}
 {{#allParams}}
 {{#required}}
             // verify required parameter '{{paramName}}' is set
@@ -44,26 +47,36 @@ module {{package}} {
 {{/allParams}}
 {{#queryParams}}
             if ({{paramName}} !== undefined) {
-                queryParameters['{{paramName}}'] = {{paramName}};
+                queryParameters['{{baseName}}'] = {{paramName}};
             }
 
 {{/queryParams}}
 {{#headerParams}}
-            headerParams['{{paramName}}'] = {{paramName}};
+            headerParams['{{baseName}}'] = {{paramName}};
 
 {{/headerParams}}
-            var httpRequestParams: any = {
+{{#hasFormParams}}
+            headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
+
+{{/hasFormParams}}
+{{#formParams}}
+            formParams['{{baseName}}'] = {{paramName}};
+            
+{{/formParams}}
+            let httpRequestParams: any = {
                 method: '{{httpMethod}}',
                 url: path,
-                json: true,
+                json: {{#hasFormParams}}false{{/hasFormParams}}{{^hasFormParams}}true{{/hasFormParams}},
                 {{#bodyParam}}data: {{paramName}},
                 {{/bodyParam}}
+                {{#hasFormParams}}data: this.$httpParamSerializer(formParams),
+                {{/hasFormParams}}
                 params: queryParameters,
                 headers: headerParams
             };
 
             if (extraHttpRequestParams) {
-                for (var k in extraHttpRequestParams) {
+                for (let k in extraHttpRequestParams) {
                     if (extraHttpRequestParams.hasOwnProperty(k)) {
                         httpRequestParams[k] = extraHttpRequestParams[k];
                     }

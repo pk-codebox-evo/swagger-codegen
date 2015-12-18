@@ -1,25 +1,43 @@
 package io.swagger.client.model;
 
+import io.swagger.client.StringUtil;
 import io.swagger.client.model.Category;
-import java.util.*;
 import io.swagger.client.model.Tag;
+import java.util.*;
+
+
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-08-22T21:47:05.989+08:00")
-public class Pet  {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-10-20T11:29:47.599-07:00")
+public class Pet   {
   
   private Long id = null;
   private Category category = null;
   private String name = null;
   private List<String> photoUrls = new ArrayList<String>();
   private List<Tag> tags = new ArrayList<Tag>();
-  public enum StatusEnum {
-     available,  pending,  sold, 
-  };
+
+public enum StatusEnum {
+  AVAILABLE("available"),
+  PENDING("pending"),
+  SOLD("sold");
+
+  private String value;
+
+  StatusEnum(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String toString() {
+    return value;
+  }
+}
+
   private StatusEnum status = null;
 
   
@@ -102,13 +120,13 @@ public class Pet  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Pet {\n");
     
-    sb.append("  id: ").append(id).append("\n");
-    sb.append("  category: ").append(category).append("\n");
-    sb.append("  name: ").append(name).append("\n");
-    sb.append("  photoUrls: ").append(photoUrls).append("\n");
-    sb.append("  tags: ").append(tags).append("\n");
-    sb.append("  status: ").append(status).append("\n");
-    sb.append("}\n");
+    sb.append("    id: ").append(StringUtil.toIndentedString(id)).append("\n");
+    sb.append("    category: ").append(StringUtil.toIndentedString(category)).append("\n");
+    sb.append("    name: ").append(StringUtil.toIndentedString(name)).append("\n");
+    sb.append("    photoUrls: ").append(StringUtil.toIndentedString(photoUrls)).append("\n");
+    sb.append("    tags: ").append(StringUtil.toIndentedString(tags)).append("\n");
+    sb.append("    status: ").append(StringUtil.toIndentedString(status)).append("\n");
+    sb.append("}");
     return sb.toString();
   }
 }

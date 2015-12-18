@@ -104,13 +104,13 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
         }
 
         additionalProperties.put("clientPackage", clientPackage);
-
+        
         supportingFiles.add(new SupportingFile("Configuration.mustache",
-                (sourceFolder + File.separator + clientPackage).replace(".", java.io.File.separator), "Configuration.cs"));
+                sourceFolder + File.separator + clientPackage.replace(".", java.io.File.separator), "Configuration.cs"));
         supportingFiles.add(new SupportingFile("ApiClient.mustache",
-                (sourceFolder + File.separator + clientPackage).replace(".", java.io.File.separator), "ApiClient.cs"));
+                sourceFolder + File.separator + clientPackage.replace(".", java.io.File.separator), "ApiClient.cs"));
         supportingFiles.add(new SupportingFile("ApiException.mustache",
-                (sourceFolder + File.separator + clientPackage).replace(".", java.io.File.separator), "ApiException.cs"));
+                sourceFolder + File.separator + clientPackage.replace(".", java.io.File.separator), "ApiException.cs"));
         supportingFiles.add(new SupportingFile("Newtonsoft.Json.dll", "bin", "Newtonsoft.Json.dll"));
         supportingFiles.add(new SupportingFile("RestSharp.dll", "bin", "RestSharp.dll"));
         supportingFiles.add(new SupportingFile("compile.mustache", "", "compile.bat"));
@@ -137,17 +137,17 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
 
     @Override
     public String apiFileFolder() {
-        return (outputFolder + File.separator + sourceFolder + File.separator + apiPackage()).replace('.', File.separatorChar);
+        return outputFolder + File.separator + sourceFolder + File.separator + apiPackage().replace('.', File.separatorChar);
     }
 
     public String modelFileFolder() {
-        return (outputFolder + File.separator + sourceFolder + File.separator + modelPackage()).replace('.', File.separatorChar);
+        return outputFolder + File.separator + sourceFolder + File.separator + modelPackage().replace('.', File.separatorChar);
     }
 
     @Override
     public String toVarName(String name) {
-        // replace - with _ e.g. created-at => created_at
-        name = name.replaceAll("-", "_");
+        // sanitize name 
+        name = sanitizeName(name);
 
         // if it's all uppper case, do nothing
         if (name.matches("^[A-Z_]*$")) {
@@ -217,7 +217,7 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
             MapProperty mp = (MapProperty) p;
             Property inner = mp.getAdditionalProperties();
 
-            return getSwaggerType(p) + "<String, " + getTypeDeclaration(inner) + ">";
+            return getSwaggerType(p) + "<string, " + getTypeDeclaration(inner) + ">";
         }
         return super.getTypeDeclaration(p);
     }
@@ -249,7 +249,7 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
             throw new RuntimeException(operationId + " (reserved word) cannot be used as method name");
         }
 
-        return camelize(operationId);
+        return camelize(sanitizeName(operationId));
     }
 
 }

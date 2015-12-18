@@ -6,18 +6,12 @@ import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
 
-import io.swagger.client.model.*;
-
-import java.util.*;
-
 import io.swagger.client.model.Pet;
 import java.io.File;
 
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-08-24T11:46:58.447+08:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-10-21T11:55:29.717+08:00")
 public class PetApi {
   private ApiClient apiClient;
 
@@ -46,8 +40,8 @@ public class PetApi {
    */
   public void updatePet (Pet body) throws ApiException {
     Object postBody = body;
+    byte[] postBinaryBody = null;
     
-
     // create path and map variables
     String path = "/pet".replaceAll("\\{format\\}","json");
 
@@ -73,9 +67,16 @@ public class PetApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "petstore_auth" };
+
     
-    apiClient.invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, null);
+
     
+    
+    apiClient.invokeAPI(path, "PUT", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    
+    
+
+
   }
   
   /**
@@ -86,8 +87,8 @@ public class PetApi {
    */
   public void addPet (Pet body) throws ApiException {
     Object postBody = body;
+    byte[] postBinaryBody = null;
     
-
     // create path and map variables
     String path = "/pet".replaceAll("\\{format\\}","json");
 
@@ -113,9 +114,16 @@ public class PetApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "petstore_auth" };
+
     
-    apiClient.invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, null);
+
     
+    
+    apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    
+    
+
+
   }
   
   /**
@@ -126,8 +134,8 @@ public class PetApi {
    */
   public List<Pet> findPetsByStatus (List<String> status) throws ApiException {
     Object postBody = null;
+    byte[] postBinaryBody = null;
     
-
     // create path and map variables
     String path = "/pet/findByStatus".replaceAll("\\{format\\}","json");
 
@@ -155,10 +163,17 @@ public class PetApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "petstore_auth" };
+
+    
+
+    
     
     TypeRef returnType = new TypeRef<List<Pet>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
+    
+
+
   }
   
   /**
@@ -169,8 +184,8 @@ public class PetApi {
    */
   public List<Pet> findPetsByTags (List<String> tags) throws ApiException {
     Object postBody = null;
+    byte[] postBinaryBody = null;
     
-
     // create path and map variables
     String path = "/pet/findByTags".replaceAll("\\{format\\}","json");
 
@@ -198,10 +213,17 @@ public class PetApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "petstore_auth" };
+
+    
+
+    
     
     TypeRef returnType = new TypeRef<List<Pet>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
+    
+
+
   }
   
   /**
@@ -212,13 +234,13 @@ public class PetApi {
    */
   public Pet getPetById (Long petId) throws ApiException {
     Object postBody = null;
+    byte[] postBinaryBody = null;
     
-    // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling getPetById");
-    }
-    
-
+     // verify the required parameter 'petId' is set
+     if (petId == null) {
+        throw new ApiException(400, "Missing the required parameter 'petId' when calling getPetById");
+     }
+     
     // create path and map variables
     String path = "/pet/{petId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "petId" + "\\}", apiClient.escapeString(petId.toString()));
@@ -244,11 +266,18 @@ public class PetApi {
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
-    String[] authNames = new String[] { "api_key", "petstore_auth" };
+    String[] authNames = new String[] { "api_key" };
+
+    
+
+    
     
     TypeRef returnType = new TypeRef<Pet>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
+    
+
+
   }
   
   /**
@@ -261,13 +290,13 @@ public class PetApi {
    */
   public void updatePetWithForm (String petId, String name, String status) throws ApiException {
     Object postBody = null;
+    byte[] postBinaryBody = null;
     
-    // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling updatePetWithForm");
-    }
-    
-
+     // verify the required parameter 'petId' is set
+     if (petId == null) {
+        throw new ApiException(400, "Missing the required parameter 'petId' when calling updatePetWithForm");
+     }
+     
     // create path and map variables
     String path = "/pet/{petId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "petId" + "\\}", apiClient.escapeString(petId.toString()));
@@ -298,9 +327,16 @@ public class PetApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "petstore_auth" };
+
     
-    apiClient.invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, null);
+
     
+    
+    apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    
+    
+
+
   }
   
   /**
@@ -312,13 +348,13 @@ public class PetApi {
    */
   public void deletePet (Long petId, String apiKey) throws ApiException {
     Object postBody = null;
+    byte[] postBinaryBody = null;
     
-    // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling deletePet");
-    }
-    
-
+     // verify the required parameter 'petId' is set
+     if (petId == null) {
+        throw new ApiException(400, "Missing the required parameter 'petId' when calling deletePet");
+     }
+     
     // create path and map variables
     String path = "/pet/{petId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "petId" + "\\}", apiClient.escapeString(petId.toString()));
@@ -347,9 +383,16 @@ public class PetApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "petstore_auth" };
+
     
-    apiClient.invokeAPI(path, "DELETE", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, null);
+
     
+    
+    apiClient.invokeAPI(path, "DELETE", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    
+    
+
+
   }
   
   /**
@@ -362,13 +405,13 @@ public class PetApi {
    */
   public void uploadFile (Long petId, String additionalMetadata, File file) throws ApiException {
     Object postBody = null;
+    byte[] postBinaryBody = null;
     
-    // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling uploadFile");
-    }
-    
-
+     // verify the required parameter 'petId' is set
+     if (petId == null) {
+        throw new ApiException(400, "Missing the required parameter 'petId' when calling uploadFile");
+     }
+     
     // create path and map variables
     String path = "/pet/{petId}/uploadImage".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "petId" + "\\}", apiClient.escapeString(petId.toString()));
@@ -399,9 +442,16 @@ public class PetApi {
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
     String[] authNames = new String[] { "petstore_auth" };
+
     
-    apiClient.invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, null);
+
     
+    
+    apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    
+    
+
+
   }
   
 }

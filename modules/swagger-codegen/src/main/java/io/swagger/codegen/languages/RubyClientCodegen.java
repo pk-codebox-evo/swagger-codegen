@@ -107,17 +107,14 @@ public class RubyClientCodegen extends DefaultCodegen implements CodegenConfig {
         setModelPackage("models");
         setApiPackage("api");
 
-        supportingFiles.add(new SupportingFile("swagger_client.gemspec.mustache", "", gemName + ".gemspec"));
-        supportingFiles.add(new SupportingFile("swagger_client.mustache", libFolder, gemName + ".rb"));
-        String baseFolder = libFolder + File.separator + gemName;
-        supportingFiles.add(new SupportingFile("swagger.mustache", baseFolder, "swagger.rb"));
-        String swaggerFolder = baseFolder + File.separator + "swagger";
-        supportingFiles.add(new SupportingFile("swagger" + File.separator + "request.mustache", swaggerFolder, "request.rb"));
-        supportingFiles.add(new SupportingFile("swagger" + File.separator + "response.mustache", swaggerFolder, "response.rb"));
-        supportingFiles.add(new SupportingFile("swagger" + File.separator + "api_error.mustache", swaggerFolder, "api_error.rb"));
-        supportingFiles.add(new SupportingFile("swagger" + File.separator + "version.mustache", swaggerFolder, "version.rb"));
-        supportingFiles.add(new SupportingFile("swagger" + File.separator + "configuration.mustache", swaggerFolder, "configuration.rb"));
-        String modelFolder = baseFolder + File.separator + modelPackage.replace("/", File.separator);
+        supportingFiles.add(new SupportingFile("gemspec.mustache", "", gemName + ".gemspec"));
+        supportingFiles.add(new SupportingFile("gem.mustache", libFolder, gemName + ".rb"));
+        String gemFolder = libFolder + File.separator + gemName;
+        supportingFiles.add(new SupportingFile("api_client.mustache", gemFolder, "api_client.rb"));
+        supportingFiles.add(new SupportingFile("api_error.mustache", gemFolder, "api_error.rb"));
+        supportingFiles.add(new SupportingFile("configuration.mustache", gemFolder, "configuration.rb"));
+        supportingFiles.add(new SupportingFile("version.mustache", gemFolder, "version.rb"));
+        String modelFolder = gemFolder + File.separator + modelPackage.replace("/", File.separator);
         supportingFiles.add(new SupportingFile("base_object.mustache", modelFolder, "base_object.rb"));
     }
 
@@ -199,8 +196,8 @@ public class RubyClientCodegen extends DefaultCodegen implements CodegenConfig {
 
     @Override
     public String toVarName(String name) {
-        // replace - with _ e.g. created-at => created_at
-        name = name.replaceAll("-", "_");
+        // sanitize name
+        name = sanitizeName(name);
 
         // if it's all uppper case, convert to lower case
         if (name.matches("^[A-Z_]*$")) {
@@ -227,6 +224,8 @@ public class RubyClientCodegen extends DefaultCodegen implements CodegenConfig {
 
     @Override
     public String toModelName(String name) {
+        name = sanitizeName(name);
+
         // model name cannot use reserved keyword, e.g. return
         if (reservedWords.contains(name)) {
             throw new RuntimeException(name + " (reserved word) cannot be used as a model name");
@@ -279,7 +278,7 @@ public class RubyClientCodegen extends DefaultCodegen implements CodegenConfig {
             throw new RuntimeException(operationId + " (reserved word) cannot be used as method name");
         }
 
-        return underscore(operationId);
+        return underscore(sanitizeName(operationId));
     }
 
     @Override

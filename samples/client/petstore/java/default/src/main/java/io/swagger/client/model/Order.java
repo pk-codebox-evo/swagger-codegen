@@ -1,5 +1,6 @@
 package io.swagger.client.model;
 
+import io.swagger.client.StringUtil;
 import java.util.Date;
 
 
@@ -9,16 +10,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-08-24T11:46:58.447+08:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-10-20T10:56:59.550-07:00")
 public class Order   {
   
   private Long id = null;
   private Long petId = null;
   private Integer quantity = null;
   private Date shipDate = null;
-  public enum StatusEnum {
-     placed,  approved,  delivered, 
-  };
+
+public enum StatusEnum {
+  PLACED("placed"),
+  APPROVED("approved"),
+  DELIVERED("delivered");
+
+  private String value;
+
+  StatusEnum(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String toString() {
+    return value;
+  }
+}
+
   private StatusEnum status = null;
   private Boolean complete = null;
 
@@ -102,13 +118,13 @@ public class Order   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Order {\n");
     
-    sb.append("  id: ").append(id).append("\n");
-    sb.append("  petId: ").append(petId).append("\n");
-    sb.append("  quantity: ").append(quantity).append("\n");
-    sb.append("  shipDate: ").append(shipDate).append("\n");
-    sb.append("  status: ").append(status).append("\n");
-    sb.append("  complete: ").append(complete).append("\n");
-    sb.append("}\n");
+    sb.append("    id: ").append(StringUtil.toIndentedString(id)).append("\n");
+    sb.append("    petId: ").append(StringUtil.toIndentedString(petId)).append("\n");
+    sb.append("    quantity: ").append(StringUtil.toIndentedString(quantity)).append("\n");
+    sb.append("    shipDate: ").append(StringUtil.toIndentedString(shipDate)).append("\n");
+    sb.append("    status: ").append(StringUtil.toIndentedString(status)).append("\n");
+    sb.append("    complete: ").append(StringUtil.toIndentedString(complete)).append("\n");
+    sb.append("}");
     return sb.toString();
   }
 }

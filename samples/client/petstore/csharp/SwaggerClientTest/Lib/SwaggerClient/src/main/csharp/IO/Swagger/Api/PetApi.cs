@@ -8,82 +8,118 @@ using IO.Swagger.Model;
 namespace IO.Swagger.Api
 {
     
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
     public interface IPetApi
     {
         
         /// <summary>
-        /// Update an existing pet 
+        /// Update an existing pet
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="body">Pet object that needs to be added to the store</param>
         /// <returns></returns>
         void UpdatePet (Pet body);
   
         /// <summary>
-        /// Update an existing pet 
+        /// Update an existing pet
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="body">Pet object that needs to be added to the store</param>
         /// <returns></returns>
         System.Threading.Tasks.Task UpdatePetAsync (Pet body);
         
         /// <summary>
-        /// Add a new pet to the store 
+        /// Add a new pet to the store
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="body">Pet object that needs to be added to the store</param>
         /// <returns></returns>
         void AddPet (Pet body);
   
         /// <summary>
-        /// Add a new pet to the store 
+        /// Add a new pet to the store
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="body">Pet object that needs to be added to the store</param>
         /// <returns></returns>
         System.Threading.Tasks.Task AddPetAsync (Pet body);
         
         /// <summary>
-        /// Finds Pets by status Multiple status values can be provided with comma seperated strings
+        /// Finds Pets by status
         /// </summary>
+        /// <remarks>
+        /// Multiple status values can be provided with comma seperated strings
+        /// </remarks>
         /// <param name="status">Status values that need to be considered for filter</param>
-        /// <returns>List<Pet></returns>
+        /// <returns></returns>
         List<Pet> FindPetsByStatus (List<string> status);
   
         /// <summary>
-        /// Finds Pets by status Multiple status values can be provided with comma seperated strings
+        /// Finds Pets by status
         /// </summary>
+        /// <remarks>
+        /// Multiple status values can be provided with comma seperated strings
+        /// </remarks>
         /// <param name="status">Status values that need to be considered for filter</param>
-        /// <returns>List<Pet></returns>
+        /// <returns></returns>
         System.Threading.Tasks.Task<List<Pet>> FindPetsByStatusAsync (List<string> status);
         
         /// <summary>
-        /// Finds Pets by tags Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
+        /// Finds Pets by tags
         /// </summary>
+        /// <remarks>
+        /// Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
+        /// </remarks>
         /// <param name="tags">Tags to filter by</param>
-        /// <returns>List<Pet></returns>
+        /// <returns></returns>
         List<Pet> FindPetsByTags (List<string> tags);
   
         /// <summary>
-        /// Finds Pets by tags Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
+        /// Finds Pets by tags
         /// </summary>
+        /// <remarks>
+        /// Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
+        /// </remarks>
         /// <param name="tags">Tags to filter by</param>
-        /// <returns>List<Pet></returns>
+        /// <returns></returns>
         System.Threading.Tasks.Task<List<Pet>> FindPetsByTagsAsync (List<string> tags);
         
         /// <summary>
-        /// Find pet by ID Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
+        /// Find pet by ID
         /// </summary>
+        /// <remarks>
+        /// Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
+        /// </remarks>
         /// <param name="petId">ID of pet that needs to be fetched</param>
         /// <returns>Pet</returns>
         Pet GetPetById (long? petId);
   
         /// <summary>
-        /// Find pet by ID Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
+        /// Find pet by ID
         /// </summary>
+        /// <remarks>
+        /// Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
+        /// </remarks>
         /// <param name="petId">ID of pet that needs to be fetched</param>
         /// <returns>Pet</returns>
         System.Threading.Tasks.Task<Pet> GetPetByIdAsync (long? petId);
         
         /// <summary>
-        /// Updates a pet in the store with form data 
+        /// Updates a pet in the store with form data
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="petId">ID of pet that needs to be updated</param>
         /// <param name="name">Updated name of the pet</param>
         /// <param name="status">Updated status of the pet</param>
@@ -91,8 +127,11 @@ namespace IO.Swagger.Api
         void UpdatePetWithForm (string petId, string name, string status);
   
         /// <summary>
-        /// Updates a pet in the store with form data 
+        /// Updates a pet in the store with form data
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="petId">ID of pet that needs to be updated</param>
         /// <param name="name">Updated name of the pet</param>
         /// <param name="status">Updated status of the pet</param>
@@ -100,24 +139,33 @@ namespace IO.Swagger.Api
         System.Threading.Tasks.Task UpdatePetWithFormAsync (string petId, string name, string status);
         
         /// <summary>
-        /// Deletes a pet 
+        /// Deletes a pet
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="petId">Pet id to delete</param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
         void DeletePet (long? petId, string apiKey);
   
         /// <summary>
-        /// Deletes a pet 
+        /// Deletes a pet
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="petId">Pet id to delete</param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
         System.Threading.Tasks.Task DeletePetAsync (long? petId, string apiKey);
         
         /// <summary>
-        /// uploads an image 
+        /// uploads an image
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="petId">ID of pet to update</param>
         /// <param name="additionalMetadata">Additional data to pass to server</param>
         /// <param name="file">file to upload</param>
@@ -125,8 +173,11 @@ namespace IO.Swagger.Api
         void UploadFile (long? petId, string additionalMetadata, Stream file);
   
         /// <summary>
-        /// uploads an image 
+        /// uploads an image
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
         /// <param name="petId">ID of pet to update</param>
         /// <param name="additionalMetadata">Additional data to pass to server</param>
         /// <param name="file">file to upload</param>
@@ -175,9 +226,8 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Gets the base path of the API client.
         /// </summary>
-        /// <param name="basePath">The base path</param>
         /// <value>The base path</value>
-        public String GetBasePath(String basePath)
+        public String GetBasePath()
         {
             return this.ApiClient.BasePath;
         }
@@ -185,7 +235,7 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Gets or sets the API client.
         /// </summary>
-        /// <value>An instance of the ApiClient</param>
+        /// <value>An instance of the ApiClient</value>
         public ApiClient ApiClient {get; set;}
     
         
@@ -207,6 +257,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -246,7 +306,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -285,6 +355,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -324,7 +404,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             
@@ -349,7 +439,7 @@ namespace IO.Swagger.Api
         /// Finds Pets by status Multiple status values can be provided with comma seperated strings
         /// </summary>
         /// <param name="status">Status values that need to be considered for filter</param> 
-        /// <returns>List<Pet></returns>            
+        /// <returns></returns>            
         public List<Pet> FindPetsByStatus (List<string> status)
         {
             
@@ -363,6 +453,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             if (status != null) queryParams.Add("status", ApiClient.ParameterToString(status)); // query parameter
@@ -389,7 +489,7 @@ namespace IO.Swagger.Api
         /// Finds Pets by status Multiple status values can be provided with comma seperated strings
         /// </summary>
         /// <param name="status">Status values that need to be considered for filter</param>
-        /// <returns>List<Pet></returns>
+        /// <returns></returns>
         public async System.Threading.Tasks.Task<List<Pet>> FindPetsByStatusAsync (List<string> status)
         {
             
@@ -402,7 +502,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             if (status != null) queryParams.Add("status", ApiClient.ParameterToString(status)); // query parameter
@@ -426,7 +536,7 @@ namespace IO.Swagger.Api
         /// Finds Pets by tags Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
         /// </summary>
         /// <param name="tags">Tags to filter by</param> 
-        /// <returns>List<Pet></returns>            
+        /// <returns></returns>            
         public List<Pet> FindPetsByTags (List<string> tags)
         {
             
@@ -440,6 +550,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             if (tags != null) queryParams.Add("tags", ApiClient.ParameterToString(tags)); // query parameter
@@ -466,7 +586,7 @@ namespace IO.Swagger.Api
         /// Finds Pets by tags Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
         /// </summary>
         /// <param name="tags">Tags to filter by</param>
-        /// <returns>List<Pet></returns>
+        /// <returns></returns>
         public async System.Threading.Tasks.Task<List<Pet>> FindPetsByTagsAsync (List<string> tags)
         {
             
@@ -479,7 +599,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
             if (tags != null) queryParams.Add("tags", ApiClient.ParameterToString(tags)); // query parameter
@@ -520,6 +650,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             
@@ -561,7 +701,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             
@@ -604,6 +754,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             
@@ -649,7 +809,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             
@@ -694,6 +864,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             
@@ -737,7 +917,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             
@@ -782,6 +972,16 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             
@@ -827,7 +1027,17 @@ namespace IO.Swagger.Api
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
-    
+
+            // to determine the Accept header
+            String[] http_header_accepts = new String[] {
+                "application/json", "application/xml"
+            };
+            String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
+            if (http_header_accept != null)
+                headerParams.Add("Accept", ApiClient.SelectHeaderAccept(http_header_accepts));
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             if (petId != null) pathParams.Add("petId", ApiClient.ParameterToString(petId)); // path parameter
             

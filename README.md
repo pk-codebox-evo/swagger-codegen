@@ -1,11 +1,44 @@
 # Swagger Code Generator
 
 [![Build Status](https://travis-ci.org/swagger-api/swagger-codegen.png)](https://travis-ci.org/swagger-api/swagger-codegen)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.swagger/swagger-codegen-project/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.swagger/swagger-codegen-project)
 
 ## Overview
 This is the swagger codegen project, which allows generation of client libraries automatically from a Swagger-compliant server.  
 
 Check out [Swagger-Spec](https://github.com/swagger-api/swagger-spec) for additional information about the Swagger project, including additional libraries with support for other languages and more. 
+
+# Table of contents
+
+  - [Swagger Code Generator](#swagger-code-generator)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - Installation
+    - [Build and run using docker](#build-and-run-using-docker)
+    - [Build a nodejs server stub](#build-a-nodejs-server-stub)
+    - [Compatibility](#compatibility)
+    - [Prerequisites](#prerequisites)
+    - [OS X Users](#os-x-users)
+      - [Building](#building)
+  - Generators
+    - [To generate a sample client library](#to-generate-a-sample-client-library)
+    - [Generating libraries from your server](#generating-libraries-from-your-server)
+    - [Modifying the client library format](#modifying-the-client-library-format)
+    - [Making your own codegen modules](#making-your-own-codegen-modules)
+    - [Where is Javascript???](#where-is-javascript)
+      - [Generating a client from local files](#generating-a-client-from-local-files)
+    - [Customizing the generator](#customizing-the-generator)
+    - [Validating your swagger spec](#validating-your-swagger-spec)
+    - [Generating dynamic html api documentation](#generating-dynamic-html-api-documentation)
+    - [Generating static html api documentation](#generating-static-html-api-documentation)
+    - [To build a server stub](#to-build-a-server-stub)
+      - [node.js](#nodejs)
+      - [rails-grape](#rails-grape)
+      - [scala scalatra](#scala-scalatra)
+      - [java jax-rs](#java-jax-rs)
+      - [java spring-mvc](#java-spring-mvc)
+    - [To build the codegen library](#to-build-the-codegen-library)
+  - [License](#license)
 
 ## Build and run using docker
 
@@ -17,7 +50,7 @@ cd swagger-codegen
 ./run-in-docker.sh mvn package
  ```
 
-Build a nodejs server stub:
+## Build a nodejs server stub
 
  ```
 ./run-in-docker.sh generate \
@@ -31,8 +64,8 @@ The Swagger Specification has undergone 3 revisions since initial creation in 20
 
 Swagger Codegen Version    | Release Date | Swagger Spec compatibility | Notes
 -------------------------- | ------------ | -------------------------- | -----
-2.1.3                      |              | 1.0, 1.1, 1.2, 2.0   | [master](https://github.com/swagger-api/swagger-codegen)
-2.1.3 (**current stable**) | 2015-08-24   | 1.0, 1.1, 1.2, 2.0   | [master](https://github.com/swagger-api/swagger-codegen/tree/v2.1.3)
+2.1.5-SNAPSHOT             |              | 1.0, 1.1, 1.2, 2.0   | [master](https://github.com/swagger-api/swagger-codegen)
+2.1.4 (**current stable**) | 2015-10-25   | 1.0, 1.1, 1.2, 2.0   | [tag v2.1.4](https://github.com/swagger-api/swagger-codegen/tree/v2.1.3)
 2.0.17                     | 2014-08-22   | 1.1, 1.2             | [tag v2.0.17](https://github.com/swagger-api/swagger-codegen/tree/v2.0.17)
 1.0.4                      | 2012-04-12   | 1.0, 1.1             | [tag v1.0.4](https://github.com/swagger-api/swagger-codegen/tree/swagger-codegen_2.9.1-1.1)
 
@@ -169,7 +202,7 @@ static code generation.
 There is a third-party component called [swagger-js-codegen](https://github.com/wcandillon/swagger-js-codegen) that can generate angularjs or nodejs source code from a swagger specification.
 
 
-#### Generating a client from flat files (i.e. no remote server calls)
+#### Generating a client from local files
 If you don't want to call your server, you can save the swagger spec files into a directory and pass an argument
 to the code generator like this:
 
@@ -178,6 +211,36 @@ to the code generator like this:
 ```
 
 Great for creating libraries on your ci server, from the [Swagger Editor](http://editor.swagger.io)... or while coding on an airplane.
+
+### Selective generation
+You may not want to generate *all* models in your project.  Likewise you may want just one or two apis to be written.  If that's the case, you can use system properties to control the output:
+
+The default is generate *everything* supported by the specific library.  Once you enable a feature, it will restrict the contents generated:
+
+```
+# generate only models
+java -Dmodels {opts}
+
+# generate only apis
+java -Dapis {opts}
+
+# generate only supporting files
+java -DsupportingFiles
+
+# generate models and supporting files
+java -Dmodels -DsupportingFiles
+```
+
+To control the specific files being generated, you can pass a CSV list of what you want:
+```
+# generate the User and Pet models only
+-Dmodels=User,Pet
+
+# generate the User model and the supportingFile `StringUtil.java`:
+-Dmodels=User -DsupportingFiles=StringUtil.java
+```
+
+When using selective generation, _only_ the templates needed for the specific generation will be used.
 
 ### Customizing the generator
 
@@ -190,8 +253,8 @@ AkkaScalaClientCodegen.java
 AndroidClientCodegen.java
 AsyncScalaClientCodegen.java
 CSharpClientCodegen.java
-CodeGenStatus.java
 CsharpDotNet2ClientCodegen.java
+DartClientCodegen.java
 FlashClientCodegen.java
 JavaClientCodegen.java
 JavaInflectorServerCodegen.java
@@ -200,10 +263,8 @@ NodeJSServerCodegen.java
 ObjcClientCodegen.java
 PerlClientCodegen.java
 PhpClientCodegen.java
-Python3ClientCodegen.java
 PythonClientCodegen.java
 Qt5CPPGenerator.java
-RetrofitClientCodegen.java
 RubyClientCodegen.java
 ScalaClientCodegen.java
 ScalatraServerCodegen.java
@@ -245,6 +306,9 @@ CONFIG OPTIONS
 	apiPackage
 	    package for generated api classes
 
+	sortParamsByRequiredFlag
+	    Sort method arguments to place required parameters before optional parameters. Default: true
+
 	invokerPackage
 	    root package for generated code
 
@@ -260,10 +324,18 @@ CONFIG OPTIONS
 	sourceFolder
 	    source folder for generated code
 
+	localVariablePrefix
+	    prefix for generated code members and local variables
+
+	serializableModel
+	    boolean - toggle "implements Serializable" for generated models
+
 	library
 	    library template (sub-template) to use:
 	    <default> - HTTP client: Jersey client 1.18. JSON processing: Jackson 2.4.2
 	    jersey2 - HTTP client: Jersey client 2.6
+	    okhttp-gson - HTTP client: OkHttp 2.4.0. JSON processing: Gson 2.3.1
+	    retrofit - HTTP client: OkHttp 2.4.0. JSON processing: Gson 2.3.1 (Retrofit 1.9.0)
 ```
 
 Your config file for java can look like
@@ -335,6 +407,7 @@ open index.html
 You can also use the codegen to generate a server for a couple different frameworks.  Take a look here:
 
 ### node.js
+
 ```
 java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate \
   -i http://petstore.swagger.io/v2/swagger.json \
@@ -343,8 +416,8 @@ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate \
 ```
 
 ### rails-grape
-#### Not yet migrated to this branch
 
+*Not yet migrated to this branch*
 
 ### scala scalatra
 ```
