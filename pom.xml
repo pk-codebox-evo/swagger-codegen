@@ -10,7 +10,7 @@
     <artifactId>swagger-codegen-project</artifactId>
     <packaging>pom</packaging>
     <name>swagger-codegen-project</name>
-    <version>2.1.5.0-restlet-SNAPSHOT</version>
+    <version>2.1.5.0-restlet</version>
     <description>
       cherry picking
       https://github.com/swagger-api/swagger-codegen/commit/b6e8ad56b5c688bffc0b88a64afbf9480e46c68d
