@@ -10,12 +10,12 @@
     <artifactId>swagger-codegen-project</artifactId>
     <packaging>pom</packaging>
     <name>swagger-codegen-project</name>
-    <version>2.1.5</version>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
+    <version>2.1.5.0-restlet-SNAPSHOT</version>
+    <url>https://github.com/restlet/swagger-codegen</url>
     <scm>
-        <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
-        <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-        <url>https://github.com/swagger-api/swagger-codegen</url>
+        <connection>scm:git:git@github.com:restlet/swagger-codegen.git</connection>
+        <developerConnection>scm:git:git@github.com:restlet/swagger-codegen.git</developerConnection>
+        <url>https://github.com/restlet/swagger-codegen</url>
     </scm>
     <prerequisites>
         <maven>2.2.0</maven>
@@ -29,7 +29,7 @@
     </developers>
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/swagger-api/swagger-core/issues</url>
+        <url>https://github.com/restlet/swagger-core/issues</url>
     </issueManagement>
     <mailingLists>
         <mailingList>
@@ -536,4 +536,16 @@
         <jmockit-version>1.19</jmockit-version>
         <reflections-version>0.9.10</reflections-version>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>https://nexus.rest-let.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>https://nexus.rest-let.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
 </project>
