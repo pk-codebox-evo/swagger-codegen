@@ -11,6 +11,15 @@
     <packaging>pom</packaging>
     <name>swagger-codegen-project</name>
     <version>2.1.5.0-restlet-SNAPSHOT</version>
+    <description>
+      cherry picking
+      https://github.com/swagger-api/swagger-codegen/commit/b6e8ad56b5c688bffc0b88a64afbf9480e46c68d
+      https://github.com/swagger-api/swagger-codegen/commit/4f715342a131db87c80b8d005430aa0cd837d405
+      https://github.com/swagger-api/swagger-codegen/commit/6064f32ba566347421eca1816aef0f3907490e54
+      https://github.com/swagger-api/swagger-codegen/commit/15676ff72e7fa09a1ce74ac52ab45785651f0786
+      https://github.com/swagger-api/swagger-codegen/commit/eb9cff7c482ef889556145e69a100f3d1703b554
+
+    </description>
     <url>https://github.com/restlet/swagger-codegen</url>
     <scm>
         <connection>scm:git:git@github.com:restlet/swagger-codegen.git</connection>
