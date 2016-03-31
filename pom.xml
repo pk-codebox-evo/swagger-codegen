@@ -10,7 +10,7 @@
     <artifactId>swagger-codegen-project</artifactId>
     <packaging>pom</packaging>
     <name>swagger-codegen-project</name>
-    <version>2.1.4.1-restlet-SNAPSHOT</version>
+    <version>2.1.4.1-restlet</version>
     <url>https://github.com/restlet/swagger-codegen</url>
     <scm>
         <connection>scm:git:git@github.com:restlet/swagger-codegen.git</connection>

@@ -6,7 +6,6 @@
 - Tag this new commit with `v<version>`. For example, `v2.1.3.1-restlet`.
 - Push the new tag.
 - Run `mvn deploy`.
-- Run `mvn deploy -Paxway` if you want to deploy the tag for Axway.
 - Run `mvn versions:set` again.
 - When prompted for the version, enter `<version-of-swagger-codegen>.<release+1>-restlet-SNAPSHOT`. For example, `2.1.3.2-restlet-SNAPSHOT`.
 - Commit the new POMs with the message `Prepare next development version`.
